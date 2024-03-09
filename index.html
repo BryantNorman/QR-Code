@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>&lt;qr-code&gt; Web Component</title>
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- CSS Styles -->
+    <style></style>
+
+    <script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
+  </head>
+  <body
+    style="
+      text-align: center;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    "
+  >
+    <h1 style="margin-top: 2em">qr-code</h1>
+
+    <div style="min-height: 200px; margin: 2em">
+      <qr-code
+        id="qr1"
+        contents="https://www.google.com/"
+        module-color="#1c7d43"
+        position-ring-color="#13532d"
+        position-center-color="#70c559"
+        style="
+          width: 200px;
+          height: 200px;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: #fff;
+        "
+      >
+        <img src="src/asstes/bch.svg" slot="icon" />
+      </qr-code>
+      <script>
+        document.getElementById("qr1").addEventListener("codeRendered", () => {
+          document.getElementById("qr1").animateQRCode("MaterializeIn");
+        });
+      </script>
+    </div>
+
+    <p>
+      <button onclick="fadeIn()">Custom Fade In</button>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('RadialRipple');"
+      >
+        Ripple
+      </button>
+      <button onclick="fadeOut()">Custom Fade Out</button>
+    </p>
+
+    <script>
+      function fadeIn() {
+        document
+          .getElementById("qr1")
+          .animateQRCode((targets, _x, _y, _count, entity) => ({
+            targets,
+            from: entity === "module" ? Math.random() * 200 : 200,
+            duration: 500,
+            easing: "cubic-bezier(1,1,0,.5)",
+            web: {
+              opacity: [0, 1],
+              scale: [0.3, 1.13, 0.93, 1],
+            },
+          }));
+      }
+      function fadeOut() {
+        document
+          .getElementById("qr1")
+          .animateQRCode((targets, _x, _y, _count, entity) => ({
+            targets,
+            from: entity === "module" ? Math.random() * 200 : 200,
+            duration: 500,
+            easing: "cubic-bezier(.5,0,1,1)",
+            web: {
+              opacity: [1, 0],
+              scale: [1, 1.1, 0.5],
+            },
+          }));
+      }
+    </script>
+
+    <p>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('RadialRippleIn');"
+      >
+        RadialRippleIn
+      </button>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('RadialRipple');"
+      >
+        RadialRipple
+      </button>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('MaterializeIn');"
+      >
+        MaterializeIn
+      </button>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('FadeInTopDown');"
+      >
+        FadeInTopDown
+      </button>
+      <button
+        onclick="document.getElementById('qr1').animateQRCode('FadeInCenterOut');"
+      >
+        FadeInCenterOut
+      </button>
+    </p>
+  </body>
+</html>
