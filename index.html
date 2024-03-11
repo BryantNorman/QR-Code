@@ -35,7 +35,7 @@
           background-color: #fff;
         "
       >
-        <img src="src/asstes/bch.svg" slot="icon" />
+        <img src="Assets/google.svg" slot="icon" />
       </qr-code>
       <script>
         document.getElementById("qr1").addEventListener("codeRendered", () => {
@@ -44,73 +44,5 @@
       </script>
     </div>
 
-    <p>
-      <button onclick="fadeIn()">Custom Fade In</button>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('RadialRipple');"
-      >
-        Ripple
-      </button>
-      <button onclick="fadeOut()">Custom Fade Out</button>
-    </p>
-
-    <script>
-      function fadeIn() {
-        document
-          .getElementById("qr1")
-          .animateQRCode((targets, _x, _y, _count, entity) => ({
-            targets,
-            from: entity === "module" ? Math.random() * 200 : 200,
-            duration: 500,
-            easing: "cubic-bezier(1,1,0,.5)",
-            web: {
-              opacity: [0, 1],
-              scale: [0.3, 1.13, 0.93, 1],
-            },
-          }));
-      }
-      function fadeOut() {
-        document
-          .getElementById("qr1")
-          .animateQRCode((targets, _x, _y, _count, entity) => ({
-            targets,
-            from: entity === "module" ? Math.random() * 200 : 200,
-            duration: 500,
-            easing: "cubic-bezier(.5,0,1,1)",
-            web: {
-              opacity: [1, 0],
-              scale: [1, 1.1, 0.5],
-            },
-          }));
-      }
-    </script>
-
-    <p>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('RadialRippleIn');"
-      >
-        RadialRippleIn
-      </button>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('RadialRipple');"
-      >
-        RadialRipple
-      </button>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('MaterializeIn');"
-      >
-        MaterializeIn
-      </button>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('FadeInTopDown');"
-      >
-        FadeInTopDown
-      </button>
-      <button
-        onclick="document.getElementById('qr1').animateQRCode('FadeInCenterOut');"
-      >
-        FadeInCenterOut
-      </button>
-    </p>
   </body>
 </html>
